@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e2e2e2, #ffffff);
+            color: #333;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-out;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background: #ffffff;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-out;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+            color: #007bff;
+            font-size: 22px;
+        }
+        .sidebar a, .sidebar button {
+            display: block;
+            padding: 12px 15px;
+            color: #ffffff;
+            text-decoration: none;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            border: none;
+            text-align: left;
+            width: calc(100% - 30px);
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .sidebar a:hover, .sidebar button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d79);
+            transform: scale(1.05);
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .btn {
+            padding: 12px 20px;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .btn-view-requests {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .btn-view-requests:hover {
+            background: linear-gradient(135deg, #0056b3, #003d79);
+            transform: scale(1.05);
+        }
+        .btn-request-history {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .btn-request-history:hover {
+            background: linear-gradient(135deg, #0056b3, #003d79);
+            transform: scale(1.05);
+        }
+        .btn-settings {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        .btn-settings:hover {
+            background: linear-gradient(135deg, #0056b3, #003d79);
+            transform: scale(1.05);
+        }
+        .btn-logout {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .btn-logout:hover {
+            background: linear-gradient(135deg, #5a6268, #4e555b);
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3>Faculty Menu</h3>
+        <a href="faculty_requests.html">View Requests</a>
+        <button class="btn-settings" onclick="window.location.href='settings.html'">Settings</button>
+        <button class="btn-request-history" onclick="window.location.href='request_history.html'">Request History</button>
+        <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            OD/Leave Request System
+        </div>
+        <button class="btn btn-view-requests" onclick="window.location.href='faculty_requests.html'">View Leave Requests</button>
+        <!-- Additional buttons -->
+        <button class="btn btn-request-history" onclick="window.location.href='request_history.html'">Requests History</button>
+        <button class="btn btn-settings" onclick="window.location.href='faculty_settings.html'">Settings</button>
+    </div>
+    <script>
+        function logout() {
+            sessionStorage.removeItem('loggedInUser');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

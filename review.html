@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Request</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Review Request</h1>
+        <p>Request ID: <span id="requestId"></span></p>
+        <p>Request details go here.</p>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestId = urlParams.get('request_id');
+        document.getElementById('requestId').innerText = requestId;
+    </script>
+</body>
+</html>

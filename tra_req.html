@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 80vh; /* Make container scrollable if needed */
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .request {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .request h3 {
+            margin: 0 0 10px 0;
+            color: #007bff;
+        }
+        .request p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .request .status {
+            font-weight: bold;
+            color: #333;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Track Requests</h1>
+        <div id="requests-container"></div>
+        <a href="student_dashboard.html" class="back-link">Back to Dashboard</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const requestsContainer = document.getElementById('requests-container');
+            let history = JSON.parse(localStorage.getItem('request_history')) || [];
+
+            if (history.length === 0) {
+                requestsContainer.innerHTML = '<p>No request history found.</p>';
+                return;
+            }
+
+            history.forEach(request => {
+                const requestElement = document.createElement('div');
+                requestElement.className = 'request';
+                requestElement.innerHTML = `
+                    <h3>Request from ${request.student.name}</h3>
+                    <p><strong>Roll No:</strong> ${request.student.rollNo}</p>
+                    <p><strong>Department:</strong> ${request.student.dept}</p>
+                    <p><strong>Year:</strong> ${request.student.year}</p>
+                    <p><strong>Date:</strong> ${request.date}</p>
+                    <p><strong>Reason:</strong> ${request.reason}</p>
+                    <p class="status"><strong>Status:</strong> ${request.status}</p>
+                `;
+                requestsContainer.appendChild(requestElement);
+            });
+        });
+    </script>
+</body>
+</html>

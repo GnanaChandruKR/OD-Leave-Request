@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #004d99;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header .account-menu {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .header .account-menu .icon {
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .header .account-menu .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 200px;
+        }
+        .header .account-menu .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+        .header .account-menu .dropdown a:last-child {
+            border-bottom: none;
+        }
+        .header .account-menu .dropdown a:hover {
+            background-color: #f0f0f0;
+        }
+        .notification-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 50px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 250px;
+        }
+        .notification-menu .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .notification-menu .notification-item:last-child {
+            border-bottom: none;
+        }
+        .notification-menu .notification-item:hover {
+            background-color: #f0f0f0;
+        }
+        .main-content {
+            margin-top: 60px; /* Space for header */
+            padding: 20px;
+            width: 100%;
+        }
+        .button {
+            display: block;
+            width: 180px;
+            padding: 12px;
+            margin: 15px auto;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .button.secondary {
+            background-color: #6c757d;
+        }
+        .button.secondary:hover {
+            background-color: #5a6268;
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .info-box {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 90%;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>OD/Leave Request System</h1>
+        <div class="account-menu">
+            <div class="icon" onclick="toggleNotificationMenu()">🔔</div>
+            <div class="icon" onclick="toggleAccountMenu()">👤</div>
+            <div class="notification-menu" id="notificationMenu">
+                <!-- Example notifications -->
+                <div class="notification-item">New request from John Doe</div>
+                <div class="notification-item">Reminder: Request approval due</div>
+            </div>
+            <div class="dropdown" id="accountDropdown">
+                <a href="view_profile.html">View Profile</a>
+                <a href="index.html" id="logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <h2>Welcome, Student!</h2>
+        <div class="info-box">
+            <h3>Your Dashboard</h3>
+            <p>Here you can manage your requests and check your profile.</p>
+        </div>
+        <a href="create_request.html" class="button">Create New Request</a>
+        <a href="track_requests.html" class="button">Track Request</a>
+        <div class="footer">
+            &copy; 2024 OD/Leave Request System
+        </div>
+    </div>
+    <script>
+        
+        function toggleAccountMenu() {
+            const dropdown = document.getElementById('accountDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('notificationMenu').style.display = 'none';
+        }
+
+        function toggleNotificationMenu() {
+            const notificationMenu = document.getElementById('notificationMenu');
+            notificationMenu.style.display = notificationMenu.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('accountDropdown').style.display = 'none';
+        }
+        function logout() {
+        sessionStorage.removeItem('loggedInUser');
+        window.location.href = 'index.html';
+    }
+    </script>
+</body>
+</html>
